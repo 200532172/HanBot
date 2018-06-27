@@ -377,7 +377,7 @@ function RDamage(target)
 		damage =
 			common.CalculateMagicDamage(
 			target,
-			(RLevelDamage[player:spellSlot(3).level] + (common.GetTotalAP() * .3) + (player.maxMana * 0.02) + extra),
+			(RLevelDamage[player:spellSlot(3).level] + (common.GetTotalAP() * .4) + (player.maxMana * 0.02) + extra),
 			player
 		)
 	end
@@ -388,7 +388,7 @@ function WDamage(target)
 	local damage = 0
 	if player:spellSlot(1).level > 0 then
 		damage =
-			common.CalculateMagicDamage(target, (WLevelDamage[player:spellSlot(1).level] + (common.GetTotalAP() * .7)), player)
+			common.CalculateMagicDamage(target, (WLevelDamage[player:spellSlot(1).level] + (common.GetTotalAP() * .8)), player)
 	end
 	return damage + common.CalculateAADamage(target) + SheenDamage(target)
 end
@@ -406,7 +406,7 @@ function EDamage(target)
 	local damage = 0
 	if player:spellSlot(2).level > 0 then
 		damage =
-			common.CalculateMagicDamage(target, (ELevelDamage[player:spellSlot(2).level] + (common.GetTotalAP() * .7)), player)
+			common.CalculateMagicDamage(target, (ELevelDamage[player:spellSlot(2).level] + (common.GetTotalAP() * .8)), player)
 	end
 	return damage
 end

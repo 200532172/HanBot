@@ -909,14 +909,15 @@ function GetQDamage(target)
 
 	--passive
 	if player.buff["ireliapassivestacks"] then
-		local passiveTotalDmg = 1.5 + (common.GetTotalAD() - 10) * passiveADScale[player.levelRef] / 100
-		passiveTotalDmg = (player.buff["ireliapassivestacks"].stacks2 + 1) * passiveTotalDmg - 10
+		local passiveTotalDmg = (common.GetBonusAD()) * 0.04 + (player.levelRef * 0.6 + 1) --(player.levelRef * 2.4 + 4) --
+		passiveTotalDmg = (player.buff["ireliapassivestacks"].stacks2 ) * passiveTotalDmg 
 		onhitMagical = onhitMagical + passiveTotalDmg
+	
 	end
 
 	if hasGuinsoo then
-		onhitPhysical = onhitPhysical + 5 + common.GetBonusAD(player) / 10
-		onhitMagical = onhitMagical + 5 + common.GetTotalAP(player) / 10
+		onhitPhysical = onhitPhysical + 5 + common.GetBonusAD(player) * 0.10
+		onhitMagical = onhitMagical + 5 + common.GetTotalAP(player) * 0.10
 	end
 
 	totalPhysical = totalPhysical + onhitPhysical
@@ -928,7 +929,8 @@ function GetQDamage(target)
 		totalPhysical = totalPhysical
 		totalMagical = totalMagical
 	end
-	return (totalPhysical * common.PhysicalReduction(target) + totalMagical * common.MagicReduction(target)) - 20
+
+	return (totalPhysical * common.PhysicalReduction(target) + totalMagical * common.MagicReduction(target))-5
 end
 local RLevelDamage = {125, 225, 325}
 function RDamage(target)
@@ -2616,6 +2618,8 @@ local function OnDraw()
 				 then
 					local minionPos = vec3(minion.x, minion.y, minion.z)
 					local targets = GetTargetGap()
+					
+
 					if (GetQDamage(minion) >= minion.health) then
 						graphics.draw_circle(minionPos, 100, 2, graphics.argb(255, 255, 255, 0), 50)
 					end
