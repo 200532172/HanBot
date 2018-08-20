@@ -906,7 +906,15 @@ local function GetClosestMobToEnemyForGap()
 
 	return closestMinion
 end
-
+local ELevelDamage = {80, 110, 104, 170, 200}
+function EDamage(target)
+	local damage = 0
+	if player:spellSlot(2).level > 0 then
+		damage =
+			common.CalculateMagicDamage(target, (ELevelDamage[player:spellSlot(2).level] + (common.GetTotalAP() * .4)), player)
+	end
+	return damage
+end
 local function Harass()
 	if menu.harass.qcombo:get() then
 		local target = GetTargetQ()
@@ -983,7 +991,7 @@ local function Harass()
 						hero and hero.isVisible and hero.team == TEAM_ENEMY and not hero.isDead and
 							hero.pos:dist(player.pos) > spellQ.range
 					 then
-						if (minion.pos:dist(hero.pos) < spellQ.range - 150) and minion.health > dmglib.GetSpellDamage(2, minion) then
+						if (minion.pos:dist(hero.pos) < spellQ.range - 150) and minion.health > EDamage(minion) then
 							player:castSpell("obj", 2, minion)
 						end
 					end
@@ -1095,7 +1103,7 @@ local function Combo()
 						hero and hero.isVisible and hero.team == TEAM_ENEMY and not hero.isDead and
 							hero.pos:dist(player.pos) > spellQ.range
 					 then
-						if (minion.pos:dist(hero.pos) < spellQ.range - 150) and minion.health > dmglib.GetSpellDamage(2, minion) then
+						if (minion.pos:dist(hero.pos) < spellQ.range - 150) and minion.health > EDamage(minion) then
 							player:castSpell("obj", 2, minion)
 						end
 					end
