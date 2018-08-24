@@ -70,7 +70,17 @@ function common.GetPercentPar(obj)
   local obj = obj or player
   return (obj.par / obj.maxPar) * 100
 end
+function common.CheckBuff2(obj, buffname)
+  if obj then
+    for i = 0, obj.buffManager.count - 1 do
+      local buff = obj.buffManager:get(i)
 
+      if buff and buff.valid and buff.name:find(buffname) and (buff.stacks > 0 or buff.stacks2 > 0) then
+        return true
+      end
+    end
+  end
+end
 function common.CheckBuffType(obj, bufftype)
   if obj then
     for i = 0, obj.buffManager.count - 1 do

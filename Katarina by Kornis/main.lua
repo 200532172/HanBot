@@ -1746,6 +1746,9 @@ local function OnDraw()
 	end
 end
 local function OnTick()
+	if not common.CheckBuff2(player, "katarinarsound") then
+		allowing = true
+	end
 	if allowing == false then
 		if (evade) then
 			evade.core.set_pause(math.huge)
