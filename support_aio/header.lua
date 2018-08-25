@@ -13,7 +13,8 @@ local myAIOchampions = {
   Nautilus = true,
   Bard = true,
   Braum = true,
-  Taric = true
+  Taric = true,
+  Zyra = true
 }
 
 return {

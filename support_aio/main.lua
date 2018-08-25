@@ -44,3 +44,6 @@ end
 if player.charName == "Taric" then
 	module.load("SupportAIO" .. player.charName, "Taric")
 end
+if player.charName == "Zyra" then
+	module.load("SupportAIO" .. player.charName, "Zyra")
+end
