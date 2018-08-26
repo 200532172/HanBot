@@ -104,6 +104,7 @@ local objHolder = {}
 local allowing = true
 local TimeR = 0
 local TimeW = 0
+local meowmeowmeow = 0
 local function CreateObj(object)
 	if object and object.name then
 		if object.name:find("W_mis") then
@@ -112,6 +113,7 @@ local function CreateObj(object)
 		if object.name:find("R_cas") then
 			allowing = false
 			TimeR = os.clock() + 1
+			meowmeowmeow = os.clock() + 0.5
 		end
 		if object.name:find("W_Indicator_Ally") then
 			objHolder[object.ptr] = object
@@ -1746,8 +1748,10 @@ local function OnDraw()
 	end
 end
 local function OnTick()
-	if not common.CheckBuff2(player, "katarinarsound") then
-		allowing = true
+	if meowmeowmeow < os.clock() then
+		if not common.CheckBuff2(player, "katarinarsound") then
+			allowing = true
+		end
 	end
 	if allowing == false then
 		if (evade) then
