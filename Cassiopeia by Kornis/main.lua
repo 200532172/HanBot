@@ -327,7 +327,7 @@ function EDamage(target)
 			damage = CalcMagicDmg(target, ((52 + ElvlDamage * (player.levelRef - 1)) + (common.GetTotalAP() * .1)))
 		end
 	end
-	return damage-5
+	return damage - 5
 end
 local QLevelDamage = {75, 125, 175, 225, 275}
 function QDamage(target)
@@ -965,11 +965,11 @@ local function Combo()
 						end
 						if menu.combo.qset.qpoison:get() then
 							if
-								not target.buff["poisontrailtarget"] and not target.buff["TwitchDeadlyVenom"] and
-									not target.buff["cassiopeiawpoison"] and
-									not target.buff["cassiopeiaqdebuff"] and
-									not target.buff["ToxicShotParticle"] and
-									not target.buff["bantamtraptarget"]
+								not common.CheckBuff(target, "poisontrailtarget") and not common.CheckBuff(target, "TwitchDeadlyVenom") and
+									not common.CheckBuff(target, "cassiopeiawpoison") and
+									not common.CheckBuff(target, "cassiopeiaqdebuff") and
+									not common.CheckBuff(target, "ToxicShotParticle") and
+									not common.CheckBuff(target, "bantamtraptarget")
 							 then
 								player:castSpell("pos", 0, vec3(pos.endPos.x, mousePos.y, pos.endPos.y))
 							end
