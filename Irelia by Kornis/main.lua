@@ -519,12 +519,25 @@ function GetQDamage(target)
 		if hasSheen and not hasTF and (os.clock() >= sheenTimer or common.CheckBuff(player, "sheen")) then
 			onhitPhysical = onhitPhysical + player.baseAttackDamage
 		end
-
-		return common.CalculatePhysicalDamage(
-			target,
-			(QLevelDamage[player:spellSlot(0).level] + (common.GetTotalAD() * .6) + onhitPhysical),
-			player
-		) - 2
+		local damagewww = 0
+		if target.type == TYPE_MINION then
+			damagewww =
+				(common.CalculatePhysicalDamage(
+				target,
+				(QLevelDamage[player:spellSlot(0).level] + (common.GetTotalAD() * .6) + onhitPhysical),
+				player
+			) +
+				(common.CalculatePhysicalDamage(target, (QLevelDamage[player:spellSlot(0).level] + (common.GetTotalAD() * .6))))) -
+				2
+		else
+			damagewww =
+				common.CalculatePhysicalDamage(
+				target,
+				(QLevelDamage[player:spellSlot(0).level] + (common.GetTotalAD() * .6) + onhitPhysical),
+				player
+			) - 2
+		end
+		return damagewww
 	end
 	return 0
 end
@@ -2240,6 +2253,7 @@ local function OnDraw()
 				 then
 					local minionPos = vec3(minion.x, minion.y, minion.z)
 					local targets = GetTargetGap()
+
 					if (GetQDamage(minion) >= minion.health) then
 						graphics.draw_circle(minionPos, 100, 2, graphics.argb(255, 255, 255, 0), 50)
 					end
