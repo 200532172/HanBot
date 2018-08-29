@@ -520,15 +520,25 @@ function GetQDamage(target)
 			onhitPhysical = onhitPhysical + player.baseAttackDamage
 		end
 		local damagewww = 0
+
 		if target.type == TYPE_MINION then
-			damagewww =
-				(common.CalculatePhysicalDamage(
-				target,
-				(QLevelDamage[player:spellSlot(0).level] + (common.GetTotalAD() * .6) + onhitPhysical),
-				player
-			) +
-				(common.CalculatePhysicalDamage(target, (QLevelDamage[player:spellSlot(0).level] + (common.GetTotalAD() * .6))))) -
-				2
+			if target.team == TEAM_ENEMY then
+				damagewww =
+					(common.CalculatePhysicalDamage(
+					target,
+					(QLevelDamage[player:spellSlot(0).level] + (common.GetTotalAD() * .6) + onhitPhysical),
+					player
+				) +
+					(common.CalculatePhysicalDamage(target, (QLevelDamage[player:spellSlot(0).level] + (common.GetTotalAD() * .6))))) -
+					2
+			else
+				damagewww =
+					common.CalculatePhysicalDamage(
+					target,
+					(QLevelDamage[player:spellSlot(0).level] + (common.GetTotalAD() * .6) + onhitPhysical),
+					player
+				) - 2
+			end
 		else
 			damagewww =
 				common.CalculatePhysicalDamage(
@@ -2268,6 +2278,7 @@ local function OnDraw()
 				 then
 					local minionPos = vec3(minion.x, minion.y, minion.z)
 					local targets = GetTargetGap()
+
 					if (GetQDamage(minion) >= minion.health) then
 						graphics.draw_circle(minionPos, 100, 2, graphics.argb(255, 255, 255, 0), 50)
 					end
