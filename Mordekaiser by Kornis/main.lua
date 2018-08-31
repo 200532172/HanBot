@@ -605,7 +605,7 @@ local function LaneClear()
 					minion and minion.isVisible and minion.moveSpeed > 0 and minion.isTargetable and not minion.isDead and
 						minion.pos:dist(player.pos) < 350
 				 then
-					if player.buff["mordekaiserwactive"] or player.buff["mordekaiserwinactive"] then
+					if common.CheckBuff(player, "mordekaiserwactive") or common.CheckBuff(player, "mordekaiserwinactive" then
 						if minion.pos:dist(player.pos) < 300 and allow and os.clock() > wtimelane then
 							player:castSpell("self", 1)
 						end
