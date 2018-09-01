@@ -1188,7 +1188,6 @@ local function LaneClear()
 end
 
 local function OnDraw()
-
 	if player.isOnScreen then
 		if menu.draws.drawq:get() then
 			graphics.draw_circle(player.pos, spellQ.range, 2, menu.draws.colorq:get(), 50)
@@ -1250,7 +1249,6 @@ local function OnTick()
 						spell.name:find(_:lower()) and menu.dodgew[k.charName][_].Dodge:get() and
 							menu.dodgew[k.charName][_].hp:get() >= (player.health / player.maxHealth) * 100
 					 then
-						meow = vec3(spell.target.pos.x, spell.target.pos.y, spell.target.pos.z)
 						if spell.missile then
 							if (player.pos:dist(spell.missile.pos) / spell.data.speed < network.latency + 0.35) then
 								for i = 0, objManager.enemies_n - 1 do
