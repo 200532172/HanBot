@@ -301,7 +301,7 @@ local function AutoInterrupt(spell) -- Thank you Dew for this <3
 			end
 		end
 	end
-	if common.CountBuff(player, "pyromania_particle") == true then
+	if common.CheckBuff(player, "anniepassiveprimed") then
 		if menu.misc.interrupt.inte:get() then
 			if spell.owner.type == TYPE_HERO and spell.owner.team == TEAM_ENEMY then
 				local enemyName = string.lower(spell.owner.charName)
@@ -324,7 +324,7 @@ local function AutoInterrupt(spell) -- Thank you Dew for this <3
 end
 
 local function WGapcloser()
-	if common.CountBuff(player, "pyromania_particle") == true then
+	if common.CheckBuff(player, "anniepassiveprimed") then
 		if menu.misc.Gap.GapA:get() then
 			for i = 0, objManager.enemies_n - 1 do
 				local dasher = objManager.enemies[i]
@@ -555,7 +555,7 @@ local function JungleClear()
 			end
 		end
 	end
-	if not uhh and not common.CountBuff(player, "pyromania_particle") then
+	if not uhh and not common.CheckBuff(player, "anniepassiveprimed") then
 		if (player.mana / player.maxMana) * 100 >= menu.laneclear.mana:get() then
 			if menu.laneclear.farmq:get() then
 				local enemyMinionsQ = common.GetMinionsInRange(spellQ.range, TEAM_NEUTRAL)
@@ -608,7 +608,7 @@ local function Harass()
 				end
 			end
 		end
-		if not uhh and not common.CountBuff(player, "pyromania_particle") then
+		if not uhh and not common.CheckBuff(player, "anniepassiveprimed") then
 			local target = GetTarget()
 			if menu.harass.wcombo:get() then
 				if common.IsValidTarget(target) and target then
@@ -709,7 +709,7 @@ local function LaneClear()
 			end
 		end
 	end
-	if not uhh and not common.CountBuff(player, "pyromania_particle") then
+	if not uhh and not common.CheckBuff(player, "anniepassiveprimed") then
 		if (player.mana / player.maxMana) * 100 >= menu.laneclear.mana:get() then
 			if menu.laneclear.farmq:get() and player:spellSlot(0).state == 0 then
 				local enemyMinionsQ = common.GetMinionsInRange(spellQ.range, TEAM_ENEMY)
@@ -781,7 +781,7 @@ local function LastHit()
 			end
 		end
 	end
-	if not uhh and not common.CountBuff(player, "pyromania_particle") then
+	if not uhh and not common.CheckBuff(player, "anniepassiveprimed")  then
 		if menu.lasthit.useq:get() and player:spellSlot(0).state == 0 then
 			for i = 0, objManager.minions.size[TEAM_ENEMY] - 1 do
 				local minion = objManager.minions[TEAM_ENEMY][i]
@@ -854,6 +854,7 @@ local GetTargetFR = function()
 end
 local function OnTick()
 	RFollow()
+
 	if menu.flashr:get() then
 		player:move(vec3(mousePos.x, mousePos.y, mousePos.z))
 		local target = GetTargetFR()
@@ -914,7 +915,7 @@ local function OnTick()
 		end
 	end
 	if menu.stacke:get() and menu.stackingw:get() <= (player.mana / player.maxMana) * 100 then
-		if not common.CountBuff(player, "pyromania_particle") and not player.isRecalling then
+		if not common.CheckBuff(player, "anniepassiveprimed")  and not player.isRecalling then
 			player:castSpell("pos", 2, player.pos)
 		end
 	end
