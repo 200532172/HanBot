@@ -707,6 +707,17 @@ local GetTarget = function()
 	return TS.get_result(TargetSelection).obj
 end
 
+local TargetSelectionQ = function(res, obj, dist)
+	if dist <= spellQ.range then
+		res.obj = obj
+		return true
+	end
+end
+
+local GetTargetQ = function()
+	return TS.get_result(TargetSelectionQ).obj
+end
+
 local uhh = false
 local something = 0
 local uhh2 = false
@@ -794,7 +805,11 @@ local chargingW = 0
 local uhhh = 0
 local enemy = nil
 local attacked = 0
-local function AutoInterrupt(spell) -- Thank you Dew for this <3
+local lasttarget = nil
+local function AutoInterrupt(spell)
+	if spell and spell.owner == player and spell.name == "AlphaStrike" then
+		lasttarget = spell.target
+	end
 	if
 		spell and spell.owner.type == TYPE_HERO and spell.owner == player and spell.owner.team == TEAM_ALLY and
 			not (spell.name:find("BasicAttack") or spell.name:find("crit"))
@@ -989,6 +1004,7 @@ local function Combo()
 		end
 	end
 	if menu.combo.qusage:get() == 1 then
+		local target = GetTargetQ()
 		if common.IsValidTarget(target) then
 			if (target.pos:dist(player) <= spellQ.range) then
 				player:castSpell("obj", 0, target)
@@ -997,6 +1013,7 @@ local function Combo()
 	end
 
 	if menu.combo.qusage:get() == 2 then
+		local target = GetTargetQ()
 		if common.IsValidTarget(target) then
 			if (target.pos:dist(player) <= spellQ.range) then
 				if target.path.isActive and target.path.isDashing then
@@ -1114,7 +1131,7 @@ local function JungleClear()
 end
 
 local function Harass()
-	local target = GetTarget()
+	local target = GetTargetQ()
 	if menu.harass.qcombo:get() then
 		if common.IsValidTarget(target) then
 			if (target.pos:dist(player) <= spellQ.range) then
@@ -1545,9 +1562,18 @@ local function OnTick()
 	end
 end
 
+local function CreateObj(object)
+	if object and object.pos:dist(player.pos) <= 100 and object.name:find("Q_Hit") then
+		if lasttarget and lasttarget.pos:dist(player.pos) < 300 then
+			player:attack(lasttarget)
+		end
+	end
+end
+
 cb.add(cb.draw, OnDraw)
 cb.add(cb.spell, AutoInterrupt)
 orb.combat.register_f_pre_tick(OnTick)
+cb.add(cb.delete_particle, CreateObj)
 --cb.add(cb.updatebuff, updatebuff)
 
 --cb.add(cb.tick, OnTick)
