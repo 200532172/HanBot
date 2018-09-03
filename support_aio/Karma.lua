@@ -591,7 +591,7 @@ local function Combo()
 			end
 		end
 	end
-	if menu.combo.forcee:get() <= #count_allies_in_range(player.pos, 600) + 1 then
+	if menu.combo.forcee:get() <= #count_allies_in_range(player.pos, 600) then
 		if player:spellSlot(2).state == 0 and player:spellSlot(3).state == 0 and menu.combo.ecombo:get() then
 			local target = GetTargetQ()
 			if target and target.isVisible then
