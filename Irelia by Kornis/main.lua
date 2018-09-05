@@ -205,12 +205,13 @@ menu.combo.qset:boolean("jumparound", "Use Q to Jump-Around Enemy on Minions", t
 menu.combo.qset:slider("jumpmana", " ^- Mana Manager", 50, 0, 100, 1)
 menu.combo:menu("wset", "W Settings")
 menu.combo.wset:boolean("wcombo", "Use W in Combo", false)
+menu.combo.wset.wcombo:set("tooltip", "It doesn't effect W Dodging")
 menu.combo.wset:slider("chargew", " ^- Charge Timer", 100, 1, 1500, 1)
 menu.combo.wset:boolean("forcew", "Only to release", true)
 menu.combo:menu("eset", "E Settings")
 menu.combo.eset:boolean("ecombo", "Use E in Combo", true)
 menu.combo.eset:dropdown("emode", "E Mode", 2, {"First", "Second"})
-menu.combo.eset.emode:set("tooltip", "Different E1 position")
+menu.combo.eset.emode:set("tooltip", "Different E1 Casting, but Second works better")
 menu.combo.eset:boolean("slowe", "Slow Predictions", false)
 menu.combo:menu("rset", "R Settings")
 menu.combo.rset:dropdown("rusage", "R Usage", 1, {"Always", "Only if Killable", "Never"})
@@ -220,6 +221,53 @@ menu.combo.rset:slider("saver", "Don't waste R if Enemy Health Percent <=", 10, 
 menu.combo.rset:boolean("dontr", "Don't use R if Q is on Cooldown", false)
 menu.combo:keybind("semir", "Semi-R", "T", nil)
 menu.combo:boolean("items", "Use Items", true)
+
+menu:menu("dodgew", "W Dodge")
+menu.dodgew:boolean("enablew", "Use W Automatically", true)
+menu.dodgew:header("hello", " -- Enemy Skillshots -- ")
+if not evade then
+	menu.dodgew:header("uhh", "Enable 'Premium Evade' to block Skillshots")
+end
+if evade then
+	for _, i in pairs(database) do
+		for l, k in pairs(common.GetEnemyHeroes()) do
+			-- k = myHero
+			if not database[_] then
+				return
+			end
+			if i.charName == k.charName then
+				if i.displayname == "" then
+					i.displayname = _
+				end
+				if i.danger == 0 then
+					i.danger = 1
+				end
+				if (menu.dodgew[i.charName] == nil) then
+					menu.dodgew:menu(i.charName, i.charName)
+				end
+				menu.dodgew[i.charName]:menu(_, "" .. i.charName .. " | " .. (str[i.slot] or "?") .. " " .. _)
+
+				menu.dodgew[i.charName][_]:boolean("Dodge", "Enable Block", true)
+
+				menu.dodgew[i.charName][_]:slider("hp", "HP to Dodge", 100, 1, 100, 5)
+			end
+		end
+	end
+end
+for i = 1, #common.GetEnemyHeroes() do
+	local enemy = common.GetEnemyHeroes()[i]
+	local name = string.lower(enemy.charName)
+	if enemy and dodgeWs[name] then
+		for v = 1, #dodgeWs[name] do
+			local spell = dodgeWs[name][v]
+			menu.dodgew:boolean(
+				string.format(tostring(enemy.charName) .. tostring(spell.menuslot)),
+				"Reduce Damage: " .. tostring(enemy.charName) .. " " .. tostring(spell.menuslot),
+				true
+			)
+		end
+	end
+end
 
 menu:menu("harass", "Harass")
 menu.harass:header("qset", " -- Q Settings --")
@@ -293,51 +341,6 @@ for i = 1, #common.GetEnemyHeroes() do
 			menu.interrupt.interruptmenu:boolean(
 				string.format(tostring(enemy.charName) .. tostring(spell.menuslot)),
 				"Interrupt " .. tostring(enemy.charName) .. " " .. tostring(spell.menuslot),
-				true
-			)
-		end
-	end
-end
-menu:menu("dodgew", "W Dodge")
-menu.dodgew:header("hello", " -- Enemy Skillshots -- ")
-if not evade then
-	menu.dodgew:header("uhh", "Enable 'Premium Evade' to block Skillshots")
-end
-if evade then
-	for _, i in pairs(database) do
-		for l, k in pairs(common.GetEnemyHeroes()) do
-			-- k = myHero
-			if not database[_] then
-				return
-			end
-			if i.charName == k.charName then
-				if i.displayname == "" then
-					i.displayname = _
-				end
-				if i.danger == 0 then
-					i.danger = 1
-				end
-				if (menu.dodgew[i.charName] == nil) then
-					menu.dodgew:menu(i.charName, i.charName)
-				end
-				menu.dodgew[i.charName]:menu(_, "" .. i.charName .. " | " .. (str[i.slot] or "?") .. " " .. _)
-
-				menu.dodgew[i.charName][_]:boolean("Dodge", "Enable Block", true)
-
-				menu.dodgew[i.charName][_]:slider("hp", "HP to Dodge", 100, 1, 100, 5)
-			end
-		end
-	end
-end
-for i = 1, #common.GetEnemyHeroes() do
-	local enemy = common.GetEnemyHeroes()[i]
-	local name = string.lower(enemy.charName)
-	if enemy and dodgeWs[name] then
-		for v = 1, #dodgeWs[name] do
-			local spell = dodgeWs[name][v]
-			menu.dodgew:boolean(
-				string.format(tostring(enemy.charName) .. tostring(spell.menuslot)),
-				"Reduce Damage: " .. tostring(enemy.charName) .. " " .. tostring(spell.menuslot),
 				true
 			)
 		end
@@ -729,29 +732,49 @@ local function AutoInterrupt(spell) -- Thank you Dew for this <3
 	if spell.owner == player and spell.name:find("IreliaE") then
 		allowwwwww = true
 	end
-	if
-		spell and spell.owner.type == TYPE_HERO and spell.owner.team == TEAM_ENEMY and spell.target == player and
-			not (spell.name:find("BasicAttack") or
-				spell.name:find("crit") and (spell.owner.charName ~= "Karthus" or spell.owner.charName ~= "Diana"))
-	 then
-		if not common.CheckBuff2(player, "ireliawdefense") then
-			local enemyName = string.lower(spell.owner.charName)
-			if dodgeWs[enemyName] then
-				for i = 1, #dodgeWs[enemyName] do
-					local spellCheck = dodgeWs[enemyName][i]
+	if menu.dodgew.enablew:get() then
+		if
+			spell and spell.owner.type == TYPE_HERO and spell.owner.team == TEAM_ENEMY and spell.target == player and
+				not (spell.name:find("BasicAttack") or
+					spell.name:find("crit") and (spell.owner.charName ~= "Karthus" or spell.owner.charName ~= "Diana"))
+		 then
+			if not common.CheckBuff2(player, "ireliawdefense") then
+				local enemyName = string.lower(spell.owner.charName)
+				if dodgeWs[enemyName] then
+					for i = 1, #dodgeWs[enemyName] do
+						local spellCheck = dodgeWs[enemyName][i]
 
-					if
-						menu.dodgew[spell.owner.charName .. spellCheck.menuslot]:get() and spell.slot == spellCheck.slot and
-							spell.owner.charName ~= "Vladimir" and
-							spell.owner.charName ~= "Karthus" and
-							spell.owner.charName ~= "Zed"
-					 then
-						if spell.owner.charName ~= "Renekton" then
-							player:castSpell("pos", 1, player.pos)
+						if
+							menu.dodgew[spell.owner.charName .. spellCheck.menuslot]:get() and spell.slot == spellCheck.slot and
+								spell.owner.charName ~= "Vladimir" and
+								spell.owner.charName ~= "Karthus" and
+								spell.owner.charName ~= "Zed"
+						 then
+							if spell.owner.charName ~= "Renekton" then
+								player:castSpell("pos", 1, player.pos)
+							end
+						end
+						if menu.dodgew[spell.owner.charName .. spellCheck.menuslot]:get() and spell.owner.charName == "Renekton" then
+							if spell.name == "RenektonExecute" then
+								player:castSpell("pos", 1, player.pos)
+							end
 						end
 					end
-					if menu.dodgew[spell.owner.charName .. spellCheck.menuslot]:get() and spell.owner.charName == "Renekton" then
-						if spell.name == "RenektonExecute" then
+				end
+			end
+		end
+		if
+			spell and spell.owner.type == TYPE_HERO and spell.owner.team == TEAM_ENEMY and spell.target == player and
+				spell.name:find("BasicAttack3") and
+				spell.owner.charName == "Diana"
+		 then
+			if not common.CheckBuff2(plyer, "ireliawdefense") then
+				local enemyName = string.lower(spell.owner.charName)
+				if dodgeWs[enemyName] then
+					for i = 1, #dodgeWs[enemyName] do
+						local spellCheck = dodgeWs[enemyName][i]
+
+						if menu.dodgew[spell.owner.charName .. spellCheck.menuslot]:get() and spell.owner.charName == "Diana" then
 							player:castSpell("pos", 1, player.pos)
 						end
 					end
@@ -759,25 +782,6 @@ local function AutoInterrupt(spell) -- Thank you Dew for this <3
 			end
 		end
 	end
-	if
-		spell and spell.owner.type == TYPE_HERO and spell.owner.team == TEAM_ENEMY and spell.target == player and
-			spell.name:find("BasicAttack3") and
-			spell.owner.charName == "Diana"
-	 then
-		if not common.CheckBuff2(plyer, "ireliawdefense") then
-			local enemyName = string.lower(spell.owner.charName)
-			if dodgeWs[enemyName] then
-				for i = 1, #dodgeWs[enemyName] do
-					local spellCheck = dodgeWs[enemyName][i]
-
-					if menu.dodgew[spell.owner.charName .. spellCheck.menuslot]:get() and spell.owner.charName == "Diana" then
-						player:castSpell("pos", 1, player.pos)
-					end
-				end
-			end
-		end
-	end
-
 	if menu.interrupt.inte:get() then
 		if spell.owner.type == TYPE_HERO and spell.owner.team == TEAM_ENEMY then
 			local enemyName = string.lower(spell.owner.charName)
@@ -2385,41 +2389,43 @@ end
 
 local function OnTick()
 	if evade then
-		for i = 1, #evade.core.active_spells do
-			local spell = evade.core.active_spells[i]
+		if menu.dodgew.enablew:get() then
+			for i = 1, #evade.core.active_spells do
+				local spell = evade.core.active_spells[i]
 
-			if
-				spell.polygon and spell.polygon:Contains(player.path.serverPos) ~= 0 and
-					(not spell.data.collision or #spell.data.collision == 0)
-			 then
-				for _, k in pairs(database) do
-					if menu.dodgew[k.charName] then
-						if k.charName == "Evelynn" and common.CheckBuff(player, "EvelynnW") then
-							if
-								spell.name:find(_:lower()) and menu.dodgew[k.charName][_].Dodge:get() and
-									menu.dodgew[k.charName][_].hp:get() >= (player.health / player.maxHealth) * 100
-							 then
-								if spell.missile then
-									if (player.pos:dist(spell.missile.pos) / spell.data.speed < network.latency + 0.35) then
+				if
+					spell.polygon and spell.polygon:Contains(player.path.serverPos) ~= 0 and
+						(not spell.data.collision or #spell.data.collision == 0)
+				 then
+					for _, k in pairs(database) do
+						if menu.dodgew[k.charName] then
+							if k.charName == "Evelynn" and common.CheckBuff(player, "EvelynnW") then
+								if
+									spell.name:find(_:lower()) and menu.dodgew[k.charName][_].Dodge:get() and
+										menu.dodgew[k.charName][_].hp:get() >= (player.health / player.maxHealth) * 100
+								 then
+									if spell.missile then
+										if (player.pos:dist(spell.missile.pos) / spell.data.speed < network.latency + 0.35) then
+											player:castSpell("pos", 1, player.pos)
+										end
+									end
+									if k.speed == math.huge or spell.data.spell_type == "Circular" then
 										player:castSpell("pos", 1, player.pos)
 									end
 								end
-								if k.speed == math.huge or spell.data.spell_type == "Circular" then
-									player:castSpell("pos", 1, player.pos)
-								end
-							end
-						else
-							if
-								spell.name:find(_:lower()) and menu.dodgew[k.charName][_].Dodge:get() and
-									menu.dodgew[k.charName][_].hp:get() >= (player.health / player.maxHealth) * 100
-							 then
-								if spell.missile then
-									if (player.pos:dist(spell.missile.pos) / spell.data.speed < network.latency + 0.35) then
+							else
+								if
+									spell.name:find(_:lower()) and menu.dodgew[k.charName][_].Dodge:get() and
+										menu.dodgew[k.charName][_].hp:get() >= (player.health / player.maxHealth) * 100
+								 then
+									if spell.missile then
+										if (player.pos:dist(spell.missile.pos) / spell.data.speed < network.latency + 0.35) then
+											player:castSpell("pos", 1, player.pos)
+										end
+									end
+									if k.speed == math.huge or spell.data.spell_type == "Circular" then
 										player:castSpell("pos", 1, player.pos)
 									end
-								end
-								if k.speed == math.huge or spell.data.spell_type == "Circular" then
-									player:castSpell("pos", 1, player.pos)
 								end
 							end
 						end
@@ -2427,8 +2433,30 @@ local function OnTick()
 				end
 			end
 		end
-	end
 
+		if not common.CheckBuff(player, "ireliawdefense") then
+			if
+				menu.dodgew["Karthus" .. "R"] and menu.dodgew["Karthus" .. "R"]:get() and
+					common.CheckBuff(player, "karthusfallenonetarget") and
+					(common.EndTime(player, "karthusfallenonetarget") - game.time) * 1000 <= 300
+			 then
+				player:castSpell("pos", 1, player.pos)
+			end
+			if
+				menu.dodgew["Zed" .. "R"] and menu.dodgew["Zed" .. "R"]:get() and common.CheckBuff(player, "zedrdeathmark") and
+					(common.EndTime(player, "zedrdeathmark") - game.time) * 1000 <= 300
+			 then
+				player:castSpell("pos", 1, player.pos)
+			end
+			if
+				menu.dodgew["Vladimir" .. "R"] and menu.dodgew["Vladimir" .. "R"]:get() and
+					common.CheckBuff(player, "vladimirhemoplaguedebuff") and
+					(common.EndTime(player, "vladimirhemoplaguedebuff") - game.time) * 1000 <= 300
+			 then
+				player:castSpell("pos", 1, player.pos)
+			end
+		end
+	end
 	if menu.combo.semir:get() then
 		local target = GetTarget()
 		if common.IsValidTarget(target) and target then
@@ -2438,28 +2466,6 @@ local function OnTick()
 					player:castSpell("pos", 3, vec3(pos.endPos.x, mousePos.y, pos.endPos.y))
 				end
 			end
-		end
-	end
-	if not common.CheckBuff(player, "ireliawdefense") then
-		if
-			menu.dodgew["Karthus" .. "R"] and menu.dodgew["Karthus" .. "R"]:get() and
-				common.CheckBuff(player, "karthusfallenonetarget") and
-				(common.EndTime(player, "karthusfallenonetarget") - game.time) * 1000 <= 300
-		 then
-			player:castSpell("pos", 1, player.pos)
-		end
-		if
-			menu.dodgew["Zed" .. "R"] and menu.dodgew["Zed" .. "R"]:get() and common.CheckBuff(player, "zedrdeathmark") and
-				(common.EndTime(player, "zedrdeathmark") - game.time) * 1000 <= 300
-		 then
-			player:castSpell("pos", 1, player.pos)
-		end
-		if
-			menu.dodgew["Vladimir" .. "R"] and menu.dodgew["Vladimir" .. "R"]:get() and
-				common.CheckBuff(player, "vladimirhemoplaguedebuff") and
-				(common.EndTime(player, "vladimirhemoplaguedebuff") - game.time) * 1000 <= 300
-		 then
-			player:castSpell("pos", 1, player.pos)
 		end
 	end
 	local target = GetTarget()
