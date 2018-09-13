@@ -1,6 +1,6 @@
 local pred = module.internal("pred")
 local crypt = module.internal("crypt")
---crypt.enc_f("C:/Users/Meow/Desktop/hanbot/riot/scripts/Orianna by Kornis/main.lua", "C:/Users/Meow/Desktop/main.lua")
+--crypt.enc_f("C:/Users/Meow/Desktop/release/lol-nd/scripts/Orianna by Kornis/main.lua", "C:/Users/Meow/Desktop/main.lua")
 local common = {}
 
 -- Delay Functions Call
