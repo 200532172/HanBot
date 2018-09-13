@@ -2,6 +2,9 @@ local pred = module.internal("pred")
 
 local common = {}
 
+local crypt = module.internal("crypt")
+
+
 -- Delay Functions Call
 local delayedActions, delayedActionsExecuter = {}, nil
 function common.DelayAction(func, delay, args) --delay in seconds
