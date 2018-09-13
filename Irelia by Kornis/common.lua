@@ -1,8 +1,9 @@
 local pred = module.internal("pred")
-local crypt = module.internal('crypt')
+
 
 local common = {}
-
+local crypt = module.internal("crypt")
+--crypt.enc_f("C:/Users/Meow/Desktop/release/lol-nd/scripts/Irelia by Kornis/main.lua", "C:/Users/Meow/Desktop/main.lua")
 -- Delay Functions Call
 local delayedActions, delayedActionsExecuter = {}, nil
 function common.DelayAction(func, delay, args) --delay in seconds
