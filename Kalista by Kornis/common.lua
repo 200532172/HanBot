@@ -59,7 +59,16 @@ function common.GetPercentHealth(obj)
   local obj = obj or player
   return (obj.health / obj.maxHealth) * 100
 end
-
+function common.CheckBuffEnd(obj, buffname)
+  if obj then
+    for i = 0, obj.buffManager.count - 1 do
+      local buff = obj.buffManager:get(i)
+      if buff and buff.valid and buff.name == buffname and buff.stacks > 0 then
+        return buff.endTime
+      end
+    end
+  end
+end
 -- Returns percent mana of @obj or player
 function common.GetPercentMana(obj)
   local obj = obj or player
