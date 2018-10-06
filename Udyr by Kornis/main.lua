@@ -259,18 +259,23 @@ local function JungleClear()
 		if menu.farming.stance:get() == 1 then
 			for i = 0, objManager.minions.size[TEAM_NEUTRAL] - 1 do
 				local minion = objManager.minions[TEAM_NEUTRAL][i]
-				if minion and minion.isVisible and minion.moveSpeed > 0 and minion.isTargetable and not minion.isDead then
-					if menu.farming.jungleclear.usew:get() and player:spellSlot(3).state == 0 then
-						if minion.pos:dist(player.pos) < 300 and player:spellSlot(3).state == 0 then
-							player:castSpell("self", 3)
-							return meow
-						end
-					end
-					if player:spellSlot(3).state ~= 0 and common.CountBuff2(player, "UdyrPhoenixStance") == 1 then
-						if minion.pos:dist(player.pos) < 300 then
-							if menu.farming.jungleclear.usew:get() and player:spellSlot(1).state == 0 then
-								player:castSpell("self", 1)
+				if
+					minion and minion.isVisible and minion.moveSpeed > 0 and minion.isTargetable and not minion.isDead and
+						minion.pos:dist(player.pos) < 300
+				 then
+					if (player.buff["udyrbearstance"] and minion.buff["udyrbearstuncheck"]) or player.buff["udyrbearstance"] == nil then
+						if menu.farming.jungleclear.user:get() and player:spellSlot(3).state == 0 then
+							if minion.pos:dist(player.pos) < 300 and player:spellSlot(3).state == 0 then
+								player:castSpell("self", 3)
 								return meow
+							end
+						end
+						if player:spellSlot(3).state ~= 0 and common.CountBuff2(player, "UdyrPhoenixStance") == 1 then
+							if minion.pos:dist(player.pos) < 300 then
+								if menu.farming.jungleclear.usew:get() and player:spellSlot(1).state == 0 then
+									player:castSpell("self", 1)
+									return meow
+								end
 							end
 						end
 					end
@@ -280,29 +285,35 @@ local function JungleClear()
 		if menu.farming.stance:get() == 2 then
 			for i = 0, objManager.minions.size[TEAM_NEUTRAL] - 1 do
 				local minion = objManager.minions[TEAM_NEUTRAL][i]
-				if minion and minion.isVisible and minion.moveSpeed > 0 and minion.isTargetable and not minion.isDead then
-					if menu.farming.jungleclear.useq:get() then
-						if minion.pos:dist(player.pos) < 300 and player:spellSlot(0).state == 0 then
-							player:castSpell("self", 0)
-							return meow
-						end
-					end
-					if player:spellSlot(0).state ~= 0 or player:spellSlot(0).level == 0 then
-						if minion.pos:dist(player.pos) < 300 then
-							if menu.farming.jungleclear.user:get() and player:spellSlot(3).state == 0 then
-								player:castSpell("self", 3)
+				if
+					minion and minion.isVisible and minion.moveSpeed > 0 and minion.isTargetable and not minion.isDead and
+						minion.pos:dist(player.pos) < 300
+				 then
+					if (player.buff["udyrbearstance"] and minion.buff["udyrbearstuncheck"]) or player.buff["udyrbearstance"] == nil then
+						if menu.farming.jungleclear.useq:get() then
+							if minion.pos:dist(player.pos) < 300 and player:spellSlot(0).state == 0 then
+								player:castSpell("self", 0)
 								return meow
 							end
 						end
-					end
-					if
-						player:spellSlot(3).state ~= 0 and common.CountBuff2(player, "UdyrPhoenixStance") == 1 and
-							menu.farming.jungleclear.usew:get() or
-							player:spellSlot(3).level == 0
-					 then
-						if minion.pos:dist(player.pos) < 300 and player:spellSlot(1).state == 0 then
-							player:castSpell("self", 1)
-							return meow
+						if player:spellSlot(0).state ~= 0 or player:spellSlot(0).level == 0 then
+							if minion.pos:dist(player.pos) < 300 then
+								if menu.farming.jungleclear.user:get() and player:spellSlot(3).state == 0 then
+									player:castSpell("self", 3)
+									return meow
+								end
+							end
+						end
+						if
+							player:spellSlot(3).state ~= 0 and common.CountBuff2(player, "UdyrPhoenixStance") == 1 or
+								player:spellSlot(3).level == 0
+						 then
+							if menu.farming.jungleclear.usew:get() then
+								if minion.pos:dist(player.pos) < 300 and player:spellSlot(1).state == 0 then
+									player:castSpell("self", 1)
+									return meow
+								end
+							end
 						end
 					end
 				end
@@ -377,7 +388,6 @@ local function LaneClear()
 		end
 	end
 end
-
 
 local function OnDraw()
 	if player.isOnScreen then
