@@ -2,7 +2,8 @@ local BaseUltChampions = {
   Jinx = true,
   Ezreal = true,
   Ashe = true,
-  Draven = true
+  Draven = true,
+  Karthus = true
 }
 return {
   id = "BaseUltKornis",
