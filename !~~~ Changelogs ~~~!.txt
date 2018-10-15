@@ -11,3 +11,6 @@ Ahri:
  ● Improved Q in Farm if Hits X Minions
 Orianna:
  ● Fixed E usage in Lane Clear
+=======
+ ● Made more accurate drawings of E Damage
+>>>>>>> 4574d791b607359354fa4d2fd569fb35a0f701a2
