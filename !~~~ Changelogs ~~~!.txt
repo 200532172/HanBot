@@ -4,3 +4,10 @@ Twitch:
  ● Added option to use W only After Auto Attacks
  ● Improved Orbwalker smoothness after casting W
  ● Added option to use steal Baron/Dragon/Herald Always even if Farm is OFF
+Lucian:
+ ● Improved Extended Q Predictions
+ ● Improved Q in Farm if Hits X Minions
+Ahri:
+ ● Improved Q in Farm if Hits X Minions
+Orianna:
+ ● Fixed E usage in Lane Clear
