@@ -1,6 +1,6 @@
 ﻿2018/10/15
 -----------
-**Twitch:**
+Twitch:
  ● Added option to use W only After Auto Attacks
  ● Improved Orbwalker smoothness after casting W
  ● Added option to use steal Baron/Dragon/Herald Always even if Farm is OFF
