@@ -1,6 +1,6 @@
 ﻿2018/10/19
 -----------
-Auto Leveler
+Auto Leveler:
  ● Added tooltip for priorities
 
 2018/10/15
