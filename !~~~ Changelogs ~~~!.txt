@@ -1,6 +1,11 @@
 2018/10/21
 -----------
-  ●  Added Viktor, Gragas and Gank Alerter scripts
+Viktor:
+ ● Fixed Error in R Combo if X Health
+
+2018/10/21
+-----------
+ ●  Added Viktor, Gragas and Gank Alerter scripts
   
 2018/10/19
 -----------
