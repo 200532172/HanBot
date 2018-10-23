@@ -9,7 +9,6 @@ Base Ult:
  ● Added slider of Damage Calculcations for Ezreal. ( Since it's impossible to know what it will hit in FoG
  and since Ezreal R gets reduced damage on each enemy hit including minions, it's better to reduce it a bit. )
 
- 
 2018/10/22
 -----------
 Support AIO:
