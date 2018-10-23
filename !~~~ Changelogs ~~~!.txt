@@ -1,3 +1,10 @@
+2018/10/22
+-----------
+Support AIO:
+ ● Fixed Errors on some champions
+ ● Added Auto Priority which sets highest priority on ADC in Healing menu for Soraka
+ ● Changed Soraka's Q Predictions and changed R detection range
+
 2018/10/21
 -----------
 Viktor:
