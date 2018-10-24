@@ -8,6 +8,9 @@ Auto Leveler:
 Base Ult:
  ● Added slider of Damage Calculcations for Ezreal. ( Since it's impossible to know what it will hit in FoG
  and since Ezreal R gets reduced damage on each enemy hit including minions, it's better to reduce it a bit. )
+Gank Alerter:
+ ● Added option to change Line Width
+ ● Fixed option to turn ON/OFF Minimap drawing
 
 2018/10/22
 -----------
