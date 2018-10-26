@@ -1,5 +1,12 @@
 2018/10/23
 -----------
+Jax:
+ ● Added E Dodge for spells like Renekton W, Warwick R and so on..
+Zoe:
+ ● Updated Q Damage for 8.21 patch
+ 
+2018/10/23
+-----------
 Gragas:
  ● Added Keybind for E > Flash
 Auto Leveler:
