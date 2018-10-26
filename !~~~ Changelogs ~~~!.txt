@@ -1,7 +1,7 @@
 2018/10/26
 -----------
 Gragas:
- ● Added Insec ( E ( Flash ) > R to Turret / Ally )
+ ● Added Insec ( E > R to Turret / Ally )
 Jax:
  ● Fixed Error against Talon
  
