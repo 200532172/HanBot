@@ -6,6 +6,8 @@ Jax:
  ● Fixed Error against Talon
 Katarina:
   ● Fixed Error and improved Damage Drawings
+Master Yi:
+  ● Added more spells for Q / W Dodging.
   
 2018/10/23
 -----------
