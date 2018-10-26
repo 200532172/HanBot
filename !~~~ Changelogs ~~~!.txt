@@ -1,3 +1,8 @@
+2018/10/27
+-----------
+Auto Leveler:
+ ● Added Viktor / Kha'Zix upgrades
+
 2018/10/26
 -----------
 Gragas:
