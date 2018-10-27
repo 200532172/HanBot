@@ -2,6 +2,9 @@
 -----------
 Auto Leveler:
  ● Added Viktor / Kha'Zix upgrades
+Tryndamere:
+ ● Added option to use W only if not facing
+ ● Added option to not use Q while R is active
 
 2018/10/26
 -----------
