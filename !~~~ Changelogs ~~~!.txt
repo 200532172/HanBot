@@ -5,7 +5,11 @@ Auto Leveler:
 Tryndamere:
  ● Added option to use W only if not facing
  ● Added option to not use Q while R is active
-
+Syndra:
+ ● Made menu more easier to understand
+ ● Added some R Overkill checks
+ ● Changed some default settings
+ ● Changed drawings
 2018/10/26
 -----------
 Gragas:
