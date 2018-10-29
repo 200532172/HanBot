@@ -2,7 +2,9 @@
 -----------
 Caitlyn:
  ● Fixed crashing against Alistar
- 
+Zilean:
+ ● Added option to use Q on Self if possible to Stun
+
 2018/10/27
 -----------
 Auto Leveler:
