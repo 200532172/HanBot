@@ -1,10 +1,10 @@
-2018/10/27
+2018/10/31
 -----------
 Master Yi:
  ● Added option to block evade while in W
  ● Fixed Error while loading Master Yi with Evade disabled
 
-2018/10/27
+2018/10/29
 -----------
 Caitlyn:
  ● Fixed crashing against Alistar
