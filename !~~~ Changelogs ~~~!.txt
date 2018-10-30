@@ -1,5 +1,11 @@
 2018/10/27
 -----------
+Master Yi:
+ ● Added option to block evade while in W
+ ● Fixed Error while loading Master Yi with Evade disabled
+
+2018/10/27
+-----------
 Caitlyn:
  ● Fixed crashing against Alistar
 Zilean:
