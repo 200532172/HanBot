@@ -5,6 +5,8 @@ Other:
  Pantheon, Rammus, RekSai, Sejuani, Shyvana, Volibear, Xin Zhao
 Jax:
  ● Added W usage for Last Hit
+Darius:
+ ● Fixed Error while casting Q
 
 2018/10/31
 -----------
