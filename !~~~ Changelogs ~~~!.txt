@@ -3,6 +3,9 @@
 Master Yi:
  ● Added option to block evade while in W
  ● Fixed Error while loading Master Yi with Evade disabled
+Misc.:
+ ● Added file "All in One", it includes every champion on GitHub so if you are lazy to download everything one by one
+ then download this file instead c:
 
 2018/10/29
 -----------
