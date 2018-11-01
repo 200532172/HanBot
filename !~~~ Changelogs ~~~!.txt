@@ -2,7 +2,9 @@
 -----------
 Other:
  ● Added "Potato AIO". For now it has - Amumu, Cho'Gath, Dr.Mundo, Fiddlesticks, Galio, Garen, Hecarim, Malphite, Maokai, Olaf,
- Pantheon, Rammus, RekSai, Sejuani, Shyvana, Volibear, Xin Zhao.
+ Pantheon, Rammus, RekSai, Sejuani, Shyvana, Volibear, Xin Zhao
+Jax:
+ ● Added W usage for Last Hit
 
 2018/10/31
 -----------
