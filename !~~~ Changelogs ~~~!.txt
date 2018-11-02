@@ -1,5 +1,10 @@
 2018/11/01
 -----------
+Poato AIO:
+ ● Added Rumble and fixed some bugs
+ 
+2018/11/01
+-----------
 Other:
  ● Added "Potato AIO". For now it has - Amumu, Cho'Gath, Dr.Mundo, Fiddlesticks, Galio, Garen, Hecarim, Malphite, Maokai, Olaf,
  Pantheon, Rammus, RekSai, Sejuani, Shyvana, Volibear, Xin Zhao
