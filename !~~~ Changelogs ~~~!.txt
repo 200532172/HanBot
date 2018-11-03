@@ -1,3 +1,8 @@
+2018/11/02
+-----------
+Poato AIO:
+ ● Added Rumble and fixed some bugs
+ 
 2018/11/01
 -----------
 Other:
