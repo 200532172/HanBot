@@ -1,6 +1,10 @@
 2018/11/02
 -----------
-Poato AIO:
+Auto Leveler:
+ ● Blocked Kai'Sa to evolve spells
+2018/11/02
+-----------
+Potato AIO:
  ● Added Rumble and fixed some bugs
  
 2018/11/01
