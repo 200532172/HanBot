@@ -4,6 +4,8 @@ Orianna:
  ● Added option for Auto Harass to use W only if has Blue Buff
  ● Added option for Slow Predictions on Q
  ● Increased E Magnet range
+ Kalista:
+ ● Fixed error against Alistar
 
 2018/11/03
 -----------
