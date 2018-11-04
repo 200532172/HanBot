@@ -2,6 +2,8 @@
 -----------
 Auto Leveler:
  ● Blocked Kai'Sa to evolve spells
+Potato AIO:
+ ● Garen: Added option to use E only if Q is on Cooldown
  
 2018/11/02
 -----------
