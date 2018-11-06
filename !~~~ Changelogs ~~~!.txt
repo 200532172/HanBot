@@ -1,5 +1,7 @@
 2018/11/07
 -----------
+NEW:
+ ● Added Ezreal
 Darius:
   ● Fixed Damage Reduction on R
 2018/11/05
