@@ -1,3 +1,7 @@
+2018/11/07
+-----------
+Darius:
+  ● Fixed Damage Reduction on R
 2018/11/05
 -----------
 Orianna:
