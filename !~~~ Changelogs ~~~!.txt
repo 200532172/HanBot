@@ -1,5 +1,10 @@
 2018/11/07
 -----------
+Viktor:
+ ● Updated R Damage for 8.22
+ 
+2018/11/07
+-----------
 NEW:
  ● Added Ezreal
 Darius:
