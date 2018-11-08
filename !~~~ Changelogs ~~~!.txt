@@ -3,11 +3,12 @@
  
 2018/11/08
 -----------
-Viktor:
- ● Updated R Damage for 8.22
 Ezreal:
  ● Added E for Anti-Gapclose
  ● Added E against Melee champions
+ 
+Viktor:
+ ● Updated R Damage for 8.22
  
 2018/11/07
 -----------
