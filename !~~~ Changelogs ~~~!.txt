@@ -6,7 +6,7 @@
 Ezreal:
  ● Added E for Anti-Gapclose
  ● Added E against Melee champions
- 
+
 Viktor:
  ● Updated R Damage for 8.22
  
