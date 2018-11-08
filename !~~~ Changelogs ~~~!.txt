@@ -1,3 +1,12 @@
+// If you appreciate my work and want to support me, you can donate me via PayPal - https://www.paypal.me/HanBotKornis
+// Thank you~ ❤
+
+
+2018/11/08
+-----------
+Viktor:
+ ● Updated R Damage for 8.22
+ 
 2018/11/07
 -----------
 NEW:
