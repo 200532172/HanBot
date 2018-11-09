@@ -5,7 +5,7 @@
 -----------
 Ezreal:
  ● Fixed tear stacking near enemies / minions
- 
+ ● Fixed Bugsplat in random situations
 2018/11/08
 -----------
 Ezreal:
