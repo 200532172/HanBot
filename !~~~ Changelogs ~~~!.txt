@@ -3,6 +3,8 @@
  
 2018/11/10
 -----------
+NEW:
+ ● Added Evelynn
 Potato AIO:
  ● Added Auto Q Toggle for Dr.Mundo
  ● Shyvana in Jungle Clear will use Q only after Auto Attack
@@ -20,7 +22,6 @@ Ezreal:
 Ezreal:
  ● Added E for Anti-Gapclose
  ● Added E against Melee champions
-
 Viktor:
  ● Updated R Damage for 8.22
  
