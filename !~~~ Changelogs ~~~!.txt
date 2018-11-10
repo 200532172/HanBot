@@ -1,6 +1,14 @@
 // If you appreciate my work and want to support me, you can donate me via PayPal - https://www.paypal.me/HanBotKornis
 // Thank you~ ❤
  
+2018/11/10
+-----------
+Potato AIO:
+ ● Added Auto Q Toggle for Dr.Mundo
+ ● Shyvana in Jungle Clear will use Q only after Auto Attack
+ ● Added R Blacklist for Hecarim
+ ● Added E for Last Hit for Rumble
+
 2018/11/09
 -----------
 Ezreal:
