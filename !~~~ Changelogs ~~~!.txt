@@ -6,6 +6,9 @@
 -----------
 Support AIO:
  ● Added Slow Predictions on most champions
+Potato AIO:
+ ● Fixed R usage at max range for Amumu
+ ● Added option to use E only if has Max Fury for Rek'Sai
  
 2018/11/10
 -----------
