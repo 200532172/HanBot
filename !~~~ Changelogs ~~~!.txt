@@ -1,6 +1,13 @@
 // If you appreciate my work and want to support me, you can donate me via PayPal - https://www.paypal.me/HanBotKornis
 // Thank you~ ❤
 
+2018/11/16
+-----------
+Master Yi:
+ ● I hope it fixed Auto Attacks after Q
+Irelia:
+ ● Added Slow Predictions for R
+ 
 2018/11/15
 -----------
 Zoe:
