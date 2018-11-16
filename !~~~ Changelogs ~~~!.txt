@@ -1,7 +1,18 @@
 // If you appreciate my work and want to support me, you can donate me via PayPal - https://www.paypal.me/HanBotKornis
 // Thank you~ ❤
 
-
+2018/11/15
+-----------
+Zoe:
+ ● Fixed R>E Combo a bit
+ ● Improved performance
+Jax:
+ ● Fixed some errors and improved W>AA Reset
+Irelia:
+ ● Removed pointless options
+ ● Added option to stack passive with "Jump Around"
+ ● Made W release automatic
+ 
 2018/11/11
 -----------
 Support AIO:
