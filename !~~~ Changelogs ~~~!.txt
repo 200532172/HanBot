@@ -3,6 +3,18 @@
 
 // Discord Link: https://discord.gg/EWRCYjb
 
+2018/11/17
+-----------
+Olaf:
+ ● Fixed Error while using Harass
+ ● Added Slider for Max. Range
+Kassadin:
+ ● Added Slider for Max. Range
+ ● Updated Damage Drawings
+ ● Updated Menu
+Auto Leveler:
+ ● Fixed some issues for Viktor
+
 2018/11/16
 -----------
 Master Yi:
