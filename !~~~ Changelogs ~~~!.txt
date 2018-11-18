@@ -3,6 +3,11 @@
 
 // Discord Link: https://discord.gg/EWRCYjb
 
+2018/11/18
+-----------
+Lulu:
+ ● Fixed Error on Harass
+ 
 2018/11/17
 -----------
 Olaf:
