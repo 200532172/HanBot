@@ -3,6 +3,15 @@
 
 // Discord Link: https://discord.gg/EWRCYjb
 
+2018/11/20
+-----------
+NEW:
+ ● Released Yasuo
+Base Ult:
+ ● Updated for 8.23 patch
+Ezreal:
+ ● Updated for 8.23 patch
+ 
 2018/11/18
 -----------
 Lulu:
