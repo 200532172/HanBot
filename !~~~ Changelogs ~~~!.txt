@@ -11,6 +11,8 @@ Alistar:
  ● Fixed toggle for W Combo
 Base Ult:
  ● Now R Damage color changes if someone is Killable.
+Irelia:
+ ● Added option to include 'Coup de Grace' rune for calculations
  
 2018/11/20
 -----------
