@@ -3,6 +3,15 @@
 
 // Discord Link: https://discord.gg/EWRCYjb
 
+2018/11/21
+-----------
+Karma:
+ ● Fixed crashing on Harass
+Alistar:
+ ● Fixed toggle for W Combo
+Base Ult:
+ ● Now R Damage color changes if someone is Killable.
+ 
 2018/11/20
 -----------
 NEW:
